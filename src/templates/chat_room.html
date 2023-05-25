@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block content %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<head>
+
+
+    <div id="div-call-status"></div>
+
+{% if user.username == chat_instance.first_account.username or user.username == chat_instance.second_account.username %}
+</head>
+
+{% if user.username != chat_instance.first_account.username %}
+
+<h2 class="title-chat-room">Chat room with {{chat_instance.first_account.username}}</h2>
+
+{%else%}
+
+<h2 class="title-chat-room">Chat room with {{chat_instance.second_account.username}}</h2>
+
+{% endif %}
+
+
+
+<div class="div-chat" id="myDiv" style="position:relative;">
+    <div id="chat-content" class="chat-content"></div>
+</div>
+
+
+
+    <div class="center-button">
+      <textarea type="text" id="textInput"></textarea>
+        <button id="myButton" class="send-button" style="position:relative;top:-14px; right:-10px;">Send</button>
+                <form class="form" method="POST">
+              {% csrf_token %}
+            <input type="hidden" value="{{chat_instance.pk}} {{user.username}}" name="video-call">
+            <button id="video-call" type = 'submit' class="video-call-button" value ='Submit' style="position:relative;top:-47px; right:-250px;"></button>
+            </form>
+    </div>
+
+
+
+<script>
+var allMessages ={{all_messages|safe}}
+var chatRoom = "{{ chat_instance.pk|safe }}";
+var user = "{{ user.username|safe }}";
+const divChat = document.getElementById("myDiv")
+
+</script>
+<script src="{% static 'text_messaging.js' %}"></script>
+
+{% else %}
+
+<div class="no-access-background">
+<div class="no-access-text">
+<h3>You have no access</h3>
+    </div>
+   </div>
+{% endif %}
+
+
+{% endblock %}
+</html>

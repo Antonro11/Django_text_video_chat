@@ -1,0 +1,276 @@
+
+
+.div-chat {
+  width: 70%;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  overflow: auto;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+
+.chat-content {
+  position: relative;
+  width:50%;
+}
+
+
+
+.user-info {
+  position:absolute;
+  right:70px;
+}
+
+.center-button {
+    text-align:center;
+    width:5%
+    background-color:red;
+  }
+
+.title-chat-room {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+
+
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  padding: 10px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.register-link {
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.photo-list {
+
+    height:150px;
+    width:auto;
+    border-radius:50%;
+
+}
+
+
+.send-message-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #333333;
+  border: 2px solid #333333;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-message-button:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.username {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.no-access-background {
+      display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+
+}
+
+.no-access-text {
+   font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.unread-messages {
+  background-color: #ffc107;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+
+.sign-in-link {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid red;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.sign-in-link:hover {
+  background-color: red;
+  color: white;
+}
+
+
+.local-video {
+    position: relative;
+    height: 95px;
+    width: 125px;
+    right: -620px;
+    top: -360px;
+    border: 2px solid black; /* Default border width */
+    box-sizing: border-box;
+}
+
+.normal-video {
+   position: relative;
+    height: 500px;
+    width: 500px;
+
+}
+
+
+
+.accept-call-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accept-call-button:hover {
+  background-color: #45a049;
+}
+
+/* Styles for Cancel Call button */
+.cancel-call-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-call-button:hover {
+  background-color: #d32f2f;
+}
+
+.user-calling-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+
+.send-button {
+  display: inline-block;
+  padding: 8px 16px;
+  width: 100px; /* Set your desired width */
+  background-color: #4CAF50; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Set your desired font size */
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #45a049; /* Set your desired hover color */
+}
+
+.send-button:active {
+  background-color: #3e8e41; /* Set your desired active color */
+}
+
+
+.video-call-button {
+  background-image: url("http://localhost:8000/static/video-call-icon.png");
+  background-position:center;
+  background-size:cover;
+  height:30px;
+  width:60px;
+}
+
+.video-call-button:hover {
+  background-image: url("http://localhost:8000/static/video-call-icon-hover.png");
+}
+
+.video-call-button:active {
+  background-color: #c51162; /* Set your desired active color */
+}
+
+
+
+
+
+

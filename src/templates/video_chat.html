@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<head>
+    <meta charset="UTF-8">
+
+
+    Hello from video-chat room! {{video_chat_room.who_start_stream}}
+
+
+
+{% if user.username == video_chat_room.first_account.username or user.username == video_chat_room.second_account.username %}
+</head>
+
+{% if user.username != video_chat_room.first_account.username %}
+
+<h2 class="title-chat-room">Chat room with {{video_chat_room.first_account.username}}</h2>
+
+{%else%}
+
+<h2 class="title-chat-room">Chat room with {{video_chat_room.second_account.username}}</h2>
+
+{% endif %}
+
+
+
+
+
+    <div class="center-button">
+            Hello from Div
+
+
+<div id="videos">
+
+
+     <div id="remote-videos" class>
+         <video id="local-video" autoplay></video>
+     </div>
+
+  <br><br>
+  <button id="start-button">Start Broadcast</button>
+  <button id="stop-button">Stop Broadcast</button>
+  <button id="turn-off-video">Turn off video</button>
+
+  <br><br>
+
+
+{% if user.username == video_chat_room.first_account.username %}
+    <script>
+        var secondUserVideo = "{{video_chat_room.second_account.video_on|safe}}"
+    </script>
+{% else %}
+    <script>
+        var secondUserVideo = "{{video_chat_room.first_account.video_on}}"
+    </script>
+{% endif %}
+
+</div>
+        </div>
+<script>var whoStartStream = "{{ video_chat_room.who_start_stream|safe }}";</script>
+<script>
+var chatRoom = JSON.parse('{{ video_chat_room.pk|safe }}');
+var user = "{{ user.username|safe }}";
+</script>
+
+<script type="text/javascript" src="{% static 'video-call.js' %}"></script>
+
+
+{% else %}
+
+<div class="no-access-background">
+<div class="no-access-text">
+<h3>You have no access</h3>
+    </div>
+   </div>
+{% endif %}
+
+
+
+{% endblock %}
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "index.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+{% csrf_token %}
+<body>
+<div class="ctr" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+        <form method = 'POST' style="width:25em; align-content:center;margin:auto" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button type = 'submit' value ='Registration' class="btn btn-primary">Login</button>
+        </form>
+        <a href="{% url 'account:registration' %}" style="position:relative;top:30px;right:-30px;">Registration</a>
+    </div>
+
+</body>
+
+{% endblock %}
+</html>

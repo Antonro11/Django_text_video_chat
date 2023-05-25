@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+{% load static %}
+<link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+<body>
+<header>
+  <div class="container">
+    <div class="logo">Private chatting</div>
+    <div class="user-info">
+        {% if user.is_authenticated %}
+      <span class="username" style="position:relative;right:15px;">{{user.username}}</span>
+
+
+<a href="{% url 'account:list-users' %}" id="list-users" class="register-link" style="position:relative;right:3px;">List_Users</a>
+<a href="{% url 'account:logout' %}" class="sign-in-link">Logout</a>
+
+
+
+{% else %}
+<a href="{% url 'account:list-users' %}" class="register-link", style="position:relative;right:30px;">Home</a>
+<a href="{% url 'account:login' %}" class="sign-in-link">Sign in</a>
+{% endif %}
+    </div>
+  </div>
+</header>
+
+</br></br>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

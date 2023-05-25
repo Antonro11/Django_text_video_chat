@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    working_dir: /django_chat/src/
+    command: sh -c "python manage.py migrate && python manage.py runserver 0:8000 && python manage.py collectstatic"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./src:/django_chat/src
+
+
+
+  redis:
+    image: redis:latest
+
+
+
+

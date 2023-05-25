@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+<script>
+            var user = "{{ user.username|safe }}";
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/list/1/');
+
+
+</script>
+
+
+<div class="div-call-status"></div>
+
+
+<div class="center-button" style="position:relative; top:50px;">
+{% for usr in object_list %}
+{% if user.username != usr.username %}
+   {% if usr.photo %}
+   <img src={{usr.photo}} class="photo-list"><br>
+    {% endif %}
+<a class="username" style="position:relative;top:-2px;">{{usr.username}}</a><br>
+    {% if user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" value={{usr.username}} name="message">
+    <button type="submit" class="send-message-button">Send Message</button>
+</form>
+
+    {% else %}
+
+        <a href="{% url 'account:login' %}" class="send-message-button">Send Message</a>
+
+    {% endif %}
+
+    {% for unread_instance in all_unread %}
+        {% if user.username == unread_instance.account.username and unread_instance.receiver_accounts.username == usr.username %}
+        {% if unread_instance.count_unread|safe != "0" %}
+    <p class="unread-messages">{{unread_instance.count_unread|safe}}</p>
+            {% endif %}
+            {% endif %}
+    {% endfor %}
+    <div id="myDiv">
+    </div>
+
+    <br><br><br><br>
+{% endif %}
+
+
+
+                <script>
+        var user = "{{ user.username|safe }}";
+        var divCallStatus = document.getElementById("div-call-status");
+
+          socket.onopen = (event) => {
+
+            console.log("WS Opened: ",event.data)
+
+        }
+
+
+
+        socket.onmessage = (event) => {
+
+
+            var data = JSON.parse(event.data);
+            if (data.calling) {console.log(data.calling);
+            window.location.href = 'http://' + window.location.host + '/app/calling-status/'+ data.calling.room+"/"+data.calling["video-call-clicked"]+"/";
+            }
+
+
+            if (data.update) {
+            if (user == data.update[0] || user == data.update[1]) {location.reload()}
+                        }
+
+
+        }
+
+
+
+    </script>
+
+
+
+{% endfor %}
+
+
+{% endblock %}

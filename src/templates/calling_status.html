@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="center-button" style="position:relative;top:200px;">
+
+    <h3 class="user-calling-text">video call from {{user_calling}}...</h3>
+    <br>
+    <button class="accept-call-button" id="answer">Answer</button>
+    <button class="cancel-call-button" id="cancel">Cancel</button>
+
+</div>
+
+<audio src="http://localhost:8000/static/telephone-ring-04.mp3" autoplay></audio>
+
+</body>
+
+<script>
+    var user = '{{user.username|safe}}'
+    var callingStatusRoom = '{{calling_status_room|safe}}'
+    var buttonAnswerCall = document.getElementById("answer")
+    var buttonCancelCall = document.getElementById("cancel")
+
+
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/calling-status/'+callingStatusRoom+'/'+ user +"/");
+    const websocket = new WebSocket('ws://' + window.location.host + '/ws/video-chat/'+callingStatusRoom +"/");
+
+
+              socket.onopen = (event) => {
+            console.log("WS status Opened")
+            console.log(buttonAnswerCall.textContent,buttonCancelCall.textContent)
+                    }
+
+             socket.onmessage = (event) => {
+            var data = JSON.parse(event.data);
+                    }
+
+             buttonCancelCall.addEventListener("click", function() {
+            websocket.send(JSON.stringify({"event":"cancel-call"}))
+            window.location.href = 'http://' + window.location.host + '/app/chat/'+ callingStatusRoom+"/";;
+                    })
+
+         buttonAnswerCall.addEventListener("click", function() {
+            window.location.href = 'http://' + window.location.host + '/app/video-chat/'+ callingStatusRoom+"/";
+                })
+
+
+         setTimeout(function() {
+              buttonCancelCall.click();
+            }, 15000);
+
+</script>
+</html>
+
+{% endblock %}
